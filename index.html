@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursinho IFETEC - Listas</title>
+    <title>Cursinho IFETEC</title>
     <style>
         /* RESET E FUNDO PRETO */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
         body {
-            background-color: #000000; /* Fundo Preto */
-            color: #FFD700; /* Texto Amarelo padrão */
+            background-color: #000000;
+            color: #FFD700;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -24,6 +24,8 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             text-align: center;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 10px;
         }
 
         /* GRID DOS BOTÕES PRINCIPAIS */
@@ -37,16 +39,16 @@
 
         /* ESTILO DO BOTÃO AMARELO */
         .btn-main {
-            background-color: #FFD700; /* Amarelo Ouro */
-            color: #000000; /* Texto Preto */
+            background-color: #FFD700;
+            color: #000000;
             border: none;
             padding: 20px;
             font-size: 1.2rem;
-            font-weight: 900; /* Negrito forte */
+            font-weight: 900;
             border-radius: 8px;
             cursor: pointer;
             transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 0 #b59800; /* Sombra 3D */
+            box-shadow: 0 4px 0 #b59800;
             text-decoration: none;
             display: flex;
             justify-content: center;
@@ -67,10 +69,10 @@
 
         /* MODAL (JANELA QUE ABRE) */
         .modal-overlay {
-            display: none; /* Escondido por padrão */
+            display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro transparente */
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -78,7 +80,7 @@
         }
 
         .modal-content {
-            background-color: #1a1a1a; /* Cinza muito escuro */
+            background-color: #1a1a1a;
             border: 2px solid #FFD700;
             padding: 30px;
             border-radius: 15px;
@@ -86,7 +88,7 @@
             max-width: 400px;
             text-align: center;
             position: relative;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
         }
 
         .modal-title {
@@ -97,7 +99,7 @@
             padding-bottom: 10px;
         }
 
-        /* BOTÕES DENTRO DO MODAL */
+        /* BOTÕES DO MODAL */
         .modal-buttons {
             display: flex;
             flex-direction: column;
@@ -121,7 +123,6 @@
             color: #000;
         }
 
-        /* BOTÃO FECHAR */
         .close-btn {
             position: absolute;
             top: 10px;
@@ -138,15 +139,14 @@
 </head>
 <body>
 
-    <h1>📂 Acesso às Listas</h1>
+    <h1>📂 Cursinho IFETEC - Final</h1>
 
-    <div class="grid-container" id="buttonsContainer">
-        </div>
+    <div class="grid-container" id="buttonsContainer"></div>
 
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">✖</button>
-            <h2 class="modal-title" id="modalTitle">Título da Lista</h2>
+            <h2 class="modal-title" id="modalTitle">Título</h2>
             <div class="modal-buttons">
                 <a href="#" id="linkBlank" class="btn-action" target="_blank">📄 Lista em Branco</a>
                 <a href="#" id="linkSolved" class="btn-action" target="_blank">✅ Lista Respondida</a>
@@ -156,54 +156,58 @@
     </div>
 
     <script>
-        // DADOS DAS LISTAS COM LINKS DIRETOS (PDF RAW)
+        // BASE URL FORÇA O MODO "RAW" (APENAS ARQUIVO)
+        const baseURL = "https://raw.githubusercontent.com/leitaosbc/CursinhoIFETEC/main/";
+
+        // LISTA DE ARQUIVOS (Ajustei os nomes para o padrão mais provável)
         const data = [
             { 
                 name: "Listas 1 e 2", 
-                blank: "https://leitaosbc.github.io/CursinhoIFETEC/Listas01e02.pdf", 
-                solved: "https://leitaosbc.github.io/CursinhoIFETEC/Lista01e02respondida.pdf", 
+                // Tentei prever o nome correto. Se der erro, verifique se o arquivo é 'Lista01e02.pdf' ou 'Listas01e02.pdf' no seu GitHub
+                blank: baseURL + "Listas01e02.pdf", 
+                solved: baseURL + "Lista01e02respondida.pdf", 
                 video: "https://youtu.be/zT8kNwYSlNg" 
             },
             { 
                 name: "Lista 3", 
-                blank: "https://leitaosbc.github.io/CursinhoIFETEC/Lista03.pdf", 
-                solved: "https://leitaosbc.github.io/CursinhoIFETEC/Lista03respondida.pdf", 
+                blank: baseURL + "Lista03.pdf", 
+                solved: baseURL + "Lista03respondida.pdf", 
                 video: "https://youtu.be/LuP87nAB1RE" 
             },
             { 
                 name: "Lista 4", 
-                blank: "https://leitaosbc.github.io/CursinhoIFETEC/Lista04.pdf", 
-                solved: "https://leitaosbc.github.io/CursinhoIFETEC/Lista4respondida.pdf", 
+                blank: baseURL + "Lista04.pdf", 
+                solved: baseURL + "Lista4respondida.pdf", 
                 video: "https://youtu.be/1vQRCpYg54E" 
             },
             { 
                 name: "Lista 5", 
-                blank: "https://leitaosbc.github.io/CursinhoIFETEC/Lista05.pdf", 
-                solved: "https://leitaosbc.github.io/CursinhoIFETEC/Lista05respondida.pdf", 
+                blank: baseURL + "Lista05.pdf", 
+                solved: baseURL + "Lista05respondida.pdf", 
                 video: "https://youtu.be/PhrY9yLJ8A0" 
             },
             { 
                 name: "Lista 6", 
-                blank: "https://leitaosbc.github.io/CursinhoIFETEC/Lista06.pdf", 
-                solved: "https://leitaosbc.github.io/CursinhoIFETEC/Lista06respondida.pdf", 
+                blank: baseURL + "Lista06.pdf", 
+                solved: baseURL + "Lista06respondida.pdf", 
                 video: "https://youtu.be/btdMfVQbed4" 
             },
             { 
                 name: "Lista 7", 
-                blank: "https://leitaosbc.github.io/CursinhoIFETEC/lista07.pdf", 
-                solved: "https://leitaosbc.github.io/CursinhoIFETEC/Lista07respondida.pdf", 
+                blank: baseURL + "lista07.pdf", 
+                solved: baseURL + "Lista07respondida.pdf", 
                 video: "https://youtu.be/i8WyUfaueZY" 
             },
             { 
                 name: "Lista 8", 
-                blank: "https://leitaosbc.github.io/CursinhoIFETEC/Lista08.pdf", 
-                solved: "https://leitaosbc.github.io/CursinhoIFETEC/Lista08respondida.pdf", 
+                blank: baseURL + "Lista08.pdf", 
+                solved: baseURL + "Lista08respondida.pdf", 
                 video: "https://youtu.be/89DgW6RdusQ" 
             },
             { 
                 name: "Lista 9", 
-                blank: "https://leitaosbc.github.io/CursinhoIFETEC/Lista09.pdf", 
-                solved: "https://leitaosbc.github.io/CursinhoIFETEC/Lista09respondida.pdf", 
+                blank: baseURL + "Lista09.pdf", 
+                solved: baseURL + "Lista09respondida.pdf", 
                 video: "https://youtu.be/4J2sLw3U_8E" 
             }
         ];
@@ -215,7 +219,6 @@
         const linkSolved = document.getElementById('linkSolved');
         const linkVideo = document.getElementById('linkVideo');
 
-        // GERAR OS BOTÕES NA TELA
         data.forEach(item => {
             const btn = document.createElement('button');
             btn.className = 'btn-main';
@@ -224,26 +227,20 @@
             container.appendChild(btn);
         });
 
-        // FUNÇÃO PARA ABRIR O MODAL
         function openModal(item) {
             modalTitle.innerText = item.name;
             linkBlank.href = item.blank;
             linkSolved.href = item.solved;
             linkVideo.href = item.video;
-            
             modal.style.display = 'flex';
         }
 
-        // FUNÇÃO PARA FECHAR O MODAL
         function closeModal() {
             modal.style.display = 'none';
         }
 
-        // FECHAR AO CLICAR FORA DO MODAL
         modal.onclick = function(event) {
-            if (event.target === modal) {
-                closeModal();
-            }
+            if (event.target === modal) closeModal();
         }
     </script>
 </body>
